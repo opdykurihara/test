@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="/element/shared/css/master/master.min.css">
 ```
 
-1) server.jsを_cdg直下に配置する。
+1) server.jsをcdg_tour直下に配置する。
+
 cdg_tourだと下記のようになります。
 ```
 cdg_tour
@@ -27,6 +28,7 @@ cdg_tour
 ```
 
 2) ターミナルを起動して、npmモジュールをグローバルインストールする。
+
 ※すでにインストール済みであれば飛ばしてください。
 ```
 $ npm i -g browserSync connectSSI
@@ -54,7 +56,8 @@ $ node server.js
 [Browsersync] Serving files from: ../
 [Browsersync] Watching files...
 ```
-上記の場合はhttp://localhost:3000/で確認できる。
+上記の場合は http://localhost:3000/ で確認できる。
+
 css、HTML、jsを修正すると自動でブラウザがリロードされる。
 
 4) サーバーを止めたい場合
