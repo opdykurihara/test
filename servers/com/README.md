@@ -21,14 +21,15 @@ locale_www_[メニュー名]
 ```
 
 2) ターミナルを起動して、npmモジュールをグローバルインストールする。
+
 ※すでにインストール済みであれば飛ばしてください。
 ```
-$ npm i -g browserSync connectSSI
+$ npm i -g browser-sync connectSSI
 ```
 ※ローカルにインストールしたい場合
 ```
 $ npm init --yes
-$ npm i --save-dev browserSync connectSSI
+$ npm i --save-dev browser-sync connectSSI
 ```
 
 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
@@ -49,8 +50,10 @@ $ node server.js
 [Browsersync] Watching files...
 ```
 上記の場合はhttp://localhost:3000/で確認できる。
+
 css、HTML、jsを修正すると自動でブラウザがリロードされる。
 
 4) サーバーを止めたい場合
+
 起動中のターミナルに移動して「Ctrl + c」する。
 
