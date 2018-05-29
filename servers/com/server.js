@@ -1,4 +1,4 @@
-// Usage: npm i -g browserSync connectSSI
+// Usage: npm i -g browser-sync connectSSI
 const browserSync = require("browser-sync").create()
 const connectSSI = require("connect-ssi")
 
