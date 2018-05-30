@@ -1,0 +1,20 @@
+{
+  "name": "cssnext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "postcss -d ./css/output/ ./css/**/*.css -w --poll true --config ./postcss.config.js"
+  },
+  "keywords": [],
+  "author": "Yuka Kurihara",
+  "license": "ISC",
+  "dependencies": {
+    "postcss": "^6.0.5",
+    "postcss-cli": "^5.0.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-discard-empty": "^2.1.0",
+    "stylefmt": "^6.0.0"
+  },
+  "devDependencies": {}
+}
