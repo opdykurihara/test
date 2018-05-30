@@ -1,0 +1,18 @@
+@define-mixin icon $name {
+    padding-left: 16px;
+    &::after {
+        content: "";
+        background-url: url(/icons/$(name).png);
+    }
+}
+
+@define-mixin clearfix{
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+  }
+  &:after {
+    clear:both;
+  }
+}

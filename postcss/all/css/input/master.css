@@ -1,0 +1,33 @@
+/* inportは拡張子までを指定する */
+@import 'includes/include.css';
+
+%clearfix{
+  @mixin clearfix;
+}
+
+/* 変数を使う場合 */
+:root{
+ --a:40px;
+ --b:calc(var(--a)-10px);
+}
+
+.search {
+  display: grid;
+  font-size:var(--b);
+  @mixin icon search;
+  @extend %clearfix;
+
+  &-inner{
+    font-size:20px;
+  }
+
+  .sup{
+    @if 3 < 5 {
+      background: green;
+    }
+    @else {
+      background: blue;
+    }
+  }
+}
+
