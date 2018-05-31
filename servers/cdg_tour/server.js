@@ -1,5 +1,6 @@
 /*
  cdg_tourリポジトリで使うserver.js
+ Usage: npm i -g browser-sync connect-ssi
 */
 const browserSync = require("browser-sync").create()
 const fs = require("fs")

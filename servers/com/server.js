@@ -1,4 +1,7 @@
-// Usage: npm i -g browser-sync connectSSI
+/*
+ .comリポジトリで使うserver.js
+ Usage: npm i -g browser-sync connect-ssi
+*/
 const browserSync = require("browser-sync").create()
 const connectSSI = require("connect-ssi")
 
