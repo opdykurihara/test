@@ -1,6 +1,5 @@
 # cdg_tour用server.jsの使い方
-※ node,npmはあらかじxxxめインストール済みとします。
-
+※ node,npmはあらかじめインストール済みとします。  
 ※ 特集ページのHTML中に「\<!-- ページ固有のCSSを読み込み --\>」の記述があった場合
 ローカル作業用のコードに書き換わるようにしているので、ローカル作業用のコードは削除して作業可能です。
 
@@ -13,15 +12,17 @@
 <link rel="stylesheet" href="/element/shared/css/master/master.min.css">
 ```
 
-1) server.jsをcdg_tour直下に配置する。
+1) server.jsをcdg_tourリポジトリ直下に配置する。  
 
-cdg_tourだと下記のようになります。
 ```
 cdg_tour
    |
    +---server.js <-- ★ここに配置
+   |
    +---element
+   |
    +---element_sp
+   |
    +---[メニュー名]
            .
            .
@@ -31,12 +32,12 @@ cdg_tour
 
 ※すでにインストール済みであれば飛ばしてください。
 ```
-$ npm i -g browser-sync connectSSI
+$ npm i -g browser-sync connect-ssi
 ```
 ※ローカルにインストールしたい場合
 ```
 $ npm init --yes
-$ npm i --save-dev browser-sync connectSSI
+$ npm i --save-dev browser-sync connect-ssi
 ```
 
 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
@@ -56,11 +57,8 @@ $ node server.js
 [Browsersync] Serving files from: ../
 [Browsersync] Watching files...
 ```
-上記の場合は http://localhost:3000/ で確認できる。
+上記の場合は http://localhost:3000/ で確認できます。  
+css、HTML、jsを修正すると自動でブラウザがリロードされます。
 
-css、HTML、jsを修正すると自動でブラウザがリロードされる。
-
-4) サーバーを止めたい場合
-
-起動中のターミナルに移動して「Ctrl + c」する。
-
+4) サーバーを止めたい場合  
+起動中のターミナルに移動して「Ctrl + c」してください。
