@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/element/shared/css/master/master.min.css">
 ```
 
-1) server.jsをcdg_tourリポジトリ直下に配置する。  
+## 1) server.jsをcdg_tourリポジトリ直下に配置する。  
 
 ```
 cdg_tour
@@ -28,19 +28,19 @@ cdg_tour
            .
 ```
 
-2) ターミナルを起動して、npmモジュールをグローバルインストールする。
+## 2) ターミナルを起動して、npmモジュールをグローバルインストールする。
 
 ※すでにインストール済みであれば飛ばしてください。
 ```
 $ npm i -g browser-sync connect-ssi
 ```
-※ローカルにインストールしたい場合
+* ローカルにインストールしたい場合
 ```
 $ npm init --yes
 $ npm i --save-dev browser-sync connect-ssi
 ```
 
-3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
+## 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
 ```
 $ node server.js
 ```
@@ -60,5 +60,5 @@ $ node server.js
 上記の場合は http://localhost:3000/ で確認できます。  
 css、HTML、jsを修正すると自動でブラウザがリロードされます。
 
-4) サーバーを止めたい場合  
+## 4) サーバーを止めたい場合  
 起動中のターミナルに移動して「Ctrl + c」してください。

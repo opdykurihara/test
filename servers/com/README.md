@@ -1,10 +1,35 @@
 # .com用server.jsの使い方
-※ node,npmはあらかじめインストール済みとします。
+※ node,npmはあらかじめインストール済みとします。  
+※ locale_www_commonリポジトリの場合は[/common/server.js](https://github.com/opdykurihara/labs/tree/master/servers/com/common/)を利用してください。  
 
-1) server.jsを_cdg直下に配置する。  
+## 1) server.jsを所定の場所に配置する。  
+
+### locale_www_commonリポジトリ以外の場合  
+[リポジトリ名]/htdocs_locale_www/_cdg/[メニュー名]/直下  
 例）locale_www_flightsの場合、下記のようになります。
 ```
 locale_www_flights
+      |
+      +---htdocs_locale_www
+         |
+         +---element
+         |
+         \---_cdg
+             |
+             \---flights
+                 |
+                 +---server.js <-- ★ここに配置
+                 |
+                 \---templates
+                 .
+                 .
+```
+
+### locale_www_commonリポジトリの場合  
+※common用server.jsを利用してください。  
+locale_www_common/htdocs_locale_www/_cdg/直下
+```
+locale_www_common
       |
       +---htdocs_locale_www
          |
@@ -21,19 +46,20 @@ locale_www_flights
                  .
 ```
 
-2) ターミナルを起動して、npmモジュールをグローバルインストールする。 
+
+## 2) ターミナルを起動して、npmモジュールをグローバルインストールする。 
 
 ※すでにインストール済みであれば飛ばしてください。
 ```
-$ npm i -g browser-sync connect-ssi
+$ npm i -g browser-sync connect-ssi path fs
 ```
-※ローカルにインストールしたい場合
+* ローカルにインストールしたい場合
 ```
 $ npm init --yes
-$ npm i --save-dev browser-sync connect-ssi
+$ npm i --save-dev browser-sync connect-ssi path fs
 ```
 
-3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
+## 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
 ```
 $ node server.js
 ```
@@ -54,6 +80,6 @@ $ node server.js
 上記の場合は http://localhost:3000/ で確認できます。  
 css、HTML、jsを修正すると自動でブラウザがリロードされます。
 
-4) サーバーを止めたい場合  
+## 4) サーバーを止めたい場合  
 起動中のターミナルに移動して「Ctrl + c」してください。
 
