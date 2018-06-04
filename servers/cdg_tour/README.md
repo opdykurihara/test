@@ -32,12 +32,12 @@ cdg_tour
 
 ※すでにインストール済みであれば飛ばしてください。
 ```
-$ npm i -g browser-sync connect-ssi
+$ npm i -g browser-sync connect-ssi fs path jschardet iconvLite
 ```
 * ローカルにインストールしたい場合
 ```
 $ npm init --yes
-$ npm i --save-dev browser-sync connect-ssi
+$ npm i --save-dev browser-sync connect-ssi fs path jschardet iconvLite
 ```
 
 ## 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
