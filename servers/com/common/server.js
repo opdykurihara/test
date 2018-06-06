@@ -1,15 +1,15 @@
 /*
  .com　locale_www_commonリポジトリで使うserver.js
- Usage: npm i -g browser-sync connect-ssi
+ Usage: npm i -g browser-sync ssi-encode
 */
 const browserSync = require("browser-sync").create()
-const connectSSI = require("connect-ssi")
+const ssiEncode = require("ssi-encode")
 
 browserSync.init({
   server: {
     baseDir: [__dirname, "../"],
     middleware: [
-      connectSSI({
+      ssiEncode({
         baseDir: __dirname,
         ext: ".html"
       })
