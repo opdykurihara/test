@@ -51,12 +51,12 @@ locale_www_common
 
 ※すでにインストール済みであれば飛ばしてください。
 ```
-$ npm i -g browser-sync connect-ssi path fs
+$ npm i -g browser-sync ssi-encode
 ```
 * ローカルにインストールしたい場合
 ```
 $ npm init --yes
-$ npm i --save-dev browser-sync connect-ssi path fs
+$ npm i --save-dev browser-sync ssi-encode
 ```
 
 ## 3) ターミナルでserver.jsを置いた場所に移動してサーバーを立ち上げる。
