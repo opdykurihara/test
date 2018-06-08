@@ -9,13 +9,13 @@ const htdocs_locale_www = "D:/development/workspace/locale_www/htdocs_locale_www
 browserSync.init({
 
   server: {
-    baseDir: [__dirname, "../"],
+    baseDir: ["../", "../../"],
     routes: {
       "/element/": htdocs_locale_www + "/element/",
     },
     middleware: [
       ssiEncode({
-        baseDir: __dirname,
+        baseDir: "../",
         ext: ".html",
         routes:{
           "/_include/": htdocs_locale_www + "/_cdg/"
