@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+.search {
+  display: grid;
+
+  &.search-inner{
+    display: grid;
+    font-size:20px;
+  }
+
+  & .sup{
+    background: green;
+  }
+}
+
