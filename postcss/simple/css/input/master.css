@@ -4,6 +4,7 @@
   display: grid;
 
   &.search-inner{
+    display: grid;
     font-size:20px;
   }
 

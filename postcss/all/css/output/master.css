@@ -9,12 +9,12 @@ font-size:10px;
 display:-ms-grid;
 display:grid;
 padding-left:16px;
-font-size:30px;
+font-size:90px;
 }
 
 .search::after{
+background-image:url(/icons/search.png);
 content:"";
-background-url:url(/icons/search.png);
 }
 
 .search:before,

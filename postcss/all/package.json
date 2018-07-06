@@ -1,8 +1,11 @@
 {
-  "name": "postcss",
+  "name": "css-next-all",
   "version": "1.0.0",
   "description": "",
   "main": "postcss.config.js",
+  "scripts": {
+    "start": "postcss ./css/input/master.css -d ./css/output/ -w --poll true --config ./postcss.config.js"
+  },
   "dependencies": {
     "path": "^0.12.7",
     "postcss": "^6.0.22",
@@ -15,10 +18,7 @@
     "stylefmt": "^6.0.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "start": "postcss ./css/input/master.css -d ./css/output/ -w --poll true --config ./postcss.config.js"
-  },
   "keywords": [],
-  "author": "",
+  "author": "Yuka Kurihara",
   "license": "ISC"
 }

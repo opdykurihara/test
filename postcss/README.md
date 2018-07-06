@@ -1,10 +1,11 @@
-# postcss-cssnextのお誘い
+# postcss-cssnextで次世代CSSをカジュアルに利用する
 
-* [cssnext](http://cssnext.io/)とは
+## [postcss-cssnext](http://cssnext.io/)とは
 次世代のCSSシンタックスを今のブラウザでも解釈できるようにトランスパイルするpostcssプラグイン。
-次世代のCSSシンタックスを先取りしつつ現行バージョンのCSSを生成できる。
-当然、次世代CSSシンタックスを利用しなくてもしてトランスパイル可能。
-　* [cssnextで利用可能なシンタックス](http://cssnext.io/features/)
+ * 次世代CSSシンタックスを先取りしつつ現行バージョンのCSSを生成できる。
+ * 次世代CSSシンタックスを利用しなくてもしてトランスパイル可能。  
+ [cssnextで利用可能なシンタックス](http://cssnext.io/features/)
+
 例）
 ```
 :root {
@@ -30,37 +31,35 @@
 }
 ```
 
+## チーム内でSassを全メニューで利用することを断念した経緯
+* Sassを利用するとフォーマットを自動で整形し、前回のCSSの差分が分からなくなった
+* Sassファイルがある事に気づかず、element配下のCSSを修正して最新ファイルがどちらか分からなくなった
 
+## postcss-cssnextを利用することの利点
+* フォーマットの整形を利用しなければ既存のCSSのフォーマットに影響を与えずAutoprefixerやネスト機能を利用できる。
+* 変数など次世代CSSシンタックスを利用して効率的にCSSを書くことができる。
 
-* [postcss](https://github.com/postcss/postcss)とは
-node.js製のCSSツールを作るためのフレームワーク。
-
-## sassの代用としたいのであれば素直にsassを使った方がいいよ
-sassの代用として利用するためには複数のモジュールのインストールが必要となり、
-独自シンタックスcssになってしまうため、次世代CSSのシンタックスを先取りしつつ現行バージョンのCSSを生成するという概念から外れてしまう傾向にあります。
-sassの代用としたいのであれば素直にsassを利用した方が良いと思います。
+## postcss-cssnextの弱点
+* Sassの代用として利用するためには複数のモジュールのインストールが必要となり、独自シンタックスのcssになってしまう。
+→ Sassの代用としたいのであれば素直にsassを使った方が良いと思う
 
 ## カジュアルに使うときの設定
-既存のCSSを修正する場合
-* 既存のCSSのフォーマットに影響を与えずにautoprefixerの機能だけ利用したい
-* sassのようなnestを利用したい
-* 変数など次世代CSSシンタックスを利用して効率的にCSSを書きたい
 
 ### 1) 必要なモジュールをインストールする
 * 基本のモジュールpostcss、postcss-cli、postcss-cssnext
 ```
 npm i --save postcss postcss-cli postcss-cssnext
 ```
-* cssnextでネストを利用したときに生成されてしまう空スタイルを削除するモジュール
+* ネストを利用したときに生成されてしまう空スタイルを削除するモジュール
 ```
 npm i --save postcss-discard-empty
 ```
 
 ### 2) postcss.config.jsを作る
-postcss-cssnextモジュールにはautoprefixerが内包されているため、
+postcss-cssnextモジュールにはautoprefixerが内包されているため、  
 autoprefixer単体のインストールは不要ですが、
-gridのautoprefixerを利用したい場合はautoprefixer単体もインストールする必要があります。
-※postcss-cssnextに内包されているautoprefixerが古いため
+gridのautoprefixerを利用したい場合はautoprefixer単体もインストールする必要があります。  
+（※postcss-cssnextに内包されているautoprefixerが古いため）
 
 #### gridのautoprefixerを利用しない場合のpostcss.config.js例
 
@@ -137,9 +136,8 @@ module.exports = {
 * --poll ファイルの変更をうまく監視できないときがあるのでポーリングはtureにしておく
 * --config コンフィグファイルの場所
 ```
-postcss ./css/input/master.css -d ./css/output/ -w --poll true --config ./postcss.config.j
+postcss ./css/input/master.css -d ./css/output/ -w --poll true --config ./postcss.config.jp
 ```
-
 
 ## sassっぽく使いたい場合の設定
 
@@ -200,7 +198,7 @@ module.exports = {
 }
 ```
 ```
-/* inportは拡張子までを指定する */
+/* iｍportは拡張子までを指定する */
 @import 'includes/include.css';
 %clearfix{
   @mixin clearfix;
