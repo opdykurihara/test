@@ -1,8 +1,12 @@
 # わたしのツールひろば
 
-* [.com用メニューリポジトリserver.js](https://github.com/opdykurihara/labs/tree/master/servers/com)
+* [locale_www_cdg用server.js](https://github.com/opdykurihara/labs/tree/master/servers/locale_www_cdg)  
+※ cdg専用リポジトリ移行後はこちら
 
-* [.com用commonリポジトリserver.js](https://github.com/opdykurihara/labs/tree/master/servers/com/common/)
+* [.com用メニューリポジトリserver.js](https://github.com/opdykurihara/labs/tree/master/servers/com)  
+※ cdg専用リポジトリ移行前はこちら
+* [.com用commonリポジトリserver.js](https://github.com/opdykurihara/labs/tree/master/servers/com/common/)  
+※ cdg専用リポジトリ移行前はこちら
 
 * [.cdg_tour用server.js](https://github.com/opdykurihara/labs/tree/master/servers/cdg_tour)
 
