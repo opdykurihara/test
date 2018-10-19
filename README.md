@@ -1,4 +1,5 @@
 # わたしのツールひろば
+* [www_cdg用server.js](https://github.com/opdykurihara/labs/tree/master/servers/www_cdg)  
 
 * [locale_www_cdg用server.js](https://github.com/opdykurihara/labs/tree/master/servers/locale_www_cdg)  
 ※ cdg専用リポジトリ移行後はこちら
