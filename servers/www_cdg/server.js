@@ -5,7 +5,6 @@
 */
 const browserSync = require("browser-sync").create();
 const ssiEncode = require("ssi-encode");
-const htdocs_www = "D:/development/workspace/www/"
 
 let css = "../htdocs_www/";
 browserSync.init({
@@ -14,10 +13,7 @@ browserSync.init({
     middleware: [
       ssiEncode({
         baseDir: __dirname,
-        ext: ".html",
-        routes:{
-          "/_include/": htdocs_www + "/_cdg/"
-        }
+        ext: ".html"
       })
     ]
   },
