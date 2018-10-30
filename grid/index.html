@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/master.css">
+<title>Document</title>
+</head>
+<body>
+<h1>CSS Gridを使ってみる</h1>
+<h2>Gridの特長</h2>
+<ul>
+<li>* レイアウトのための入れ子が増えない</li>
+<li>* 均等割り付けレイアウトで最終行が揃う</li>
+</ul>
+
+<h3>flexboxとの区分け</h3>
+<ul>
+<li>* 1行の横並び、縦並び = flexbox</li>
+<li>* 格子状のレイアウトページ全体のレイアウト = Grid</li>
+</ul>
+
+
+<h2>Gridコンテナ作成の考え方</h2>
+<ol>
+<li>* grid-templateで行と列を作る</li>
+<li>* grid-areaでアイテムを配置する</li>
+</ol>
+
+<div><img src="images/sample.png"></div>
+
+<code>
+<pre>
+&lt;div class="str-container"&gt;
+&lt;div class="str-header"&gt;header&lt;/div&gt;
+&lt;div class="str-navi"&gt;navi&lt;/div&gt;
+&lt;div class="str-main"&gt;main&lt;/div&gt;
+&lt;div class="str-footer"&gt;footer&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</code>
+
+<code><pre>
+.str-container{
+  display: grid;
+  gap:10px;
+  grid-template:
+  "header header" auto
+  "navi   main"   1fr
+  "footer footer" auto/
+  100px   1fr;
+
+  .str-header{
+    grid-area: header;
+    background-color:#eee;
+  }
+  .str-navi{
+    grid-area: navi;
+    background-color:#eee;
+  }
+  .str-main{
+    grid-area:main;
+    background-color:#eee;
+  }
+  .str-footer{
+    grid-area:footer;
+    background-color:#eee;
+  }
+}
+</pre></code>
+
+<div class="str-container">
+<div class="str-header">header</div>
+<div class="str-navi">navi</div>
+<div class="str-main">main</div>
+<div class="str-footer">footer</div>
+</div>
+
+<h2>gridのレイアウトを崩さずにdivなどを入れたい場合のdisplay:contents</h2>
+<ul>
+<li>* IE11/Edge非対応</li>
+<li>* 以下で利用しているgrid-auto-flowもIE11/Edge非対応</li>
+</ul>
+
+<code><pre>
+&lt;div class="grid"&gt;
+&lt;h2&gt;heading1&lt;/h2&gt;
+&lt;p&gt;paragraph1&lt;/p&gt;
+&lt;p&gt;footer1&lt;/p&gt;
+&lt;h2&gt;heading2&lt;/h2&gt;
+&lt;p&gt;paragraph2&lt;/p&gt;
+&lt;p&gt;footer2&lt;/p&gt;
+&lt;/div&gt;
+
+ 　↓ &lt;article&gt;を入れたい
+
+&lt;div class="grid"&gt;
+&lt;article&gt;
+&lt;h2&gt;heading1&lt;/h2&gt;
+&lt;p&gt;paragraph1&lt;/p&gt;
+&lt;p&gt;footer1&lt;/p&gt;
+&lt;/article&gt;
+&lt;article&gt;
+&lt;h2&gt;heading2&lt;/h2&gt;
+&lt;p&gt;paragraph2&lt;/p&gt;
+&lt;p&gt;footer2&lt;/p&gt;
+&lt;/div&gt;
+&lt;/article&gt;
+</pre></code>
+
+<h3>articleタグなしの場合</h3>
+<p>2列✖3行 でコンテンツが配置される</p>
+<div class="grid">
+<h2>heading1</h2>
+<p>paragraph1</p>
+<p>footer1</p>
+<h2>heading2</h2>
+<p>paragraph2</p>
+<p>footer2</p>
+</div>
+
+<h3>articleタグを追加した場合でdisplay:contents;なし</h3>
+<p>タグが追加されたため2列✖3行のレイアウトにうまく収まらなくなってしまう</p>
+<div class="grid">
+<article>
+<h2>heading1</h2>
+<p>paragraph1</p>
+<p>footer1</p>
+</article>
+<article>
+<h2>heading2</h2>
+<p>paragraph2</p>
+<p>footer2</p>
+</article>
+</div>
+
+<h3>articleタグを追加した場合でdisplay:contents;あり</h3>
+<p>2列✖3行 でコンテンツが配置される</p>
+<div class="grid-02">
+<article>
+<h2>heading1</h2>
+<p>paragraph1</p>
+<p>footer1</p>
+</article>
+<article>
+<h2>heading2</h2>
+<p>paragraph2</p>
+<p>footer2</p>
+</article>
+</div>
+
+
+<h2>均等割り付け</h2>
+<code><pre>
+&lt;ul class="list-container"&gt;
+&lt;li&gt;A&lt;/li&gt;
+&lt;li&gt;B&lt;/li&gt;
+&lt;li&gt;C&lt;/li&gt;
+&lt;li&gt;D&lt;/li&gt;
+&lt;li&gt;E&lt;/li&gt;
+&lt;li&gt;F&lt;/li&gt;
+&lt;li&gt;G&lt;/li&gt;
+&lt;li&gt;H&lt;/li&gt;
+&lt;/ul&gt;
+</pre></code>
+
+
+<h3>Flexboxでの均等割り付け</h3>
+<p>最終行がそろわない</p>
+<code><pre>
+.list-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  li{
+    width:33%;
+    border: 1px solid #ccc;
+    background: #eee;
+  }
+}
+</pre></code>
+<ul class="list-container">
+<li>A</li>
+<li>B</li>
+<li>C</li>
+<li>D</li>
+<li>E</li>
+<li>F</li>
+<li>G</li>
+<li>H</li>
+</ul>
+
+<h3>Gridでの均等割り付け</h3>
+<p>最終行がそろう</p>
+<code>
+<pre>
+.list-container-02{
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+
+  li{
+    border:1px solid #ccc;
+    background: #eee;
+  }
+}
+</pre>
+</code>
+
+<p>repeat()メソッドを利用する場合、IE11では自動的に配置されないので下記のように配置位置を指定する必要がある。<br>
+ただし、repeat()メソッドを使った場合、gapのIE11向け変換ができないので、IE11対応でrepeat()メソッドを用いる場合はmarginやpaddingでアイテム間のスペースを設ける必要がある。</p>
+<code>
+<pre>
+li:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+li:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+}
+～略～
+</pre>
+</code>
+
+<p>数が多くなると面倒なのでSassを使うとよい</p>
+<code>
+<pre>
+li{
+  // 行数（3行）
+  $rowNum: 3;
+  // 列数
+  $columnNum: 5;
+  // 左上から順番に配置する
+  @for $row from 1 through $rowNum {
+    @for $column from 1 through $columnNum {
+      $index: ($row - 1) * $columnNum + $column;
+      &:nth-child(#{$index}) {
+        grid-row: $row;
+        grid-column: $column;
+      }
+    }
+  }
+}
+</pre>
+</code>
+<ul class="list-container-02">
+<li>A</li>
+<li>B</li>
+<li>C</li>
+<li>D</li>
+<li>E</li>
+<li>F</li>
+<li>G</li>
+<li>H</li>
+</ul>
+
+
+<h3>auto-fillを使った場合</h3>
+<p>IE11非対応</p>
+<code><pre>
+.list-container-03{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 33%);
+
+  li{
+    border:1px solid #ccc;
+    background: #eee;
+  }
+}
+
+</pre></code>
+<ul class="list-container-03">
+<li>A</li>
+<li>B</li>
+<li>C</li>
+<li>D</li>
+<li>E</li>
+<li>F</li>
+<li>G</li>
+<li>H</li>
+</ul>
+</body>
+</html>
