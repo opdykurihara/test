@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+.sch-container{
+  & dl{
+    display: grid;
+  }
+}
+
+
+
+.container {
+gap:10px;
+height: 100%;
+display: grid;
+grid-template:
+"visual number expression" 1fr
+"visual other other" 220px /
+40% 120px 1fr;
+}
+
+.visual {
+background-color:#efefef;
+grid-area: visual;
+}
+.number {
+background-color:#eef;
+grid-area: number;
+}
+.expression {
+background-color:#ccc;
+grid-area: expression;
+}
+.other {
+background-color:#dcdcdc;
+grid-area: other;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+@media (max-width: 800px) {
+.container {
+grid-template:
+"visual visual" 100vw
+"number expression" 1fr
+"other other" auto /
+120px 1fr
+}
+}
