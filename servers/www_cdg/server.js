@@ -19,7 +19,7 @@ browserSync.init({
       })
     ]
   },
-  files: ["../**/*.css", "**/*.html","../**/*.js","!**/_dev/*"],
+  files: ["../**/*.css","**/*.css", "**/*.html","../**/*.js","**/*.js","!**/_dev/*"],
   notify: false,
   // 立ち上げ時のバスを指定したい場合
   // startPath: "/j_optional/templates/index/index.html",
@@ -34,16 +34,16 @@ browserSync.init({
   // 特集ページの作業をするとき一時的にjsとcssを追加してページ確認するための記述
   rewriteRules: [
     {
-      match: "<!-- ページ固有のCSSを読み込み -->",
-      replace: '<meta name="viewport" content="width=device-width">\n<script src="/element/shared/lib/jquery/core/jquery-1.11.3.min.js"></script>\n<script src="/element/shared/script/rwd/shared.rwd.min.js" charset="utf-8"></script>\n<link rel="stylesheet" href="/element/shared/css/master/master.min.css">\n'
+      match: '<!-- ページ固有のCSSを読み込み -->',
+      replace: '<meta name="viewport" content="width=device-width">\n<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>\n<script src="https://www.tour.ne.jp/element/shared/script/rwd/shared.rwd.min.js" charset="utf-8"></script>\n<link rel="stylesheet" href="/element/shared/css/master/master.min.css">\n'
     },
     {
       match: /<\?php echo \$FW_ENV\[\'url\'\]\[\'WWW\'\]; \?>/g,
-      replace: "https://www.tour.ne.jp/"
+      replace: 'https://www.tour.ne.jp/'
     },
     {
       match: /<\?php echo \$FW_ENV\[\'site\'\]\[\'NAME\'\]; \?>/g,
-      replace: "トラベルコ"
+      replace: 'トラベルコ'
     },
   ],
 });

@@ -35,10 +35,10 @@ browserSync.init({
       })
     ]
   },
-  files: ["../**/*.css", "**/*.html","../**/*.js","!**/_dev/*"],
+  files: ["../**/*.css","**/*.css", "**/*.html","../**/*.js","**/*.js","!**/_dev/*"],
   notify: false,
   // 立ち上げ時のバスを指定したい場合
-  startPath: "/flights/templates/index/index_1.html",
+  // startPath: "/flights/templates/index/index_1.html",
   // httpsで確認したい場合
   // https: true,
   // 自動でブラウザを立ち上げたくない場合
