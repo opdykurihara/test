@@ -92,6 +92,12 @@ issueテンプレートを利用してissueを作成する例
 ```
 $ git issue create -a opdykurihara -M 3 -l enhancement -F .github/ISSUE_TEMPLATE.md --edit
 ```
+上記のコマンドをgitconfigにaliasで記述しておくと便利。  
+.gitconfig
+```
+iss = !hub issue create -a opdykurihara -l enhancement -F .github/ISSUE_TEMPLATE --edit
+```
+
 * issueテンプレートを利用する際、先頭に#があると、コメントアウトになるので#を別の文字列に変更しておく。  
 （ここでは[;]としている）
 ```
