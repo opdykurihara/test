@@ -1,1 +1,1 @@
-https://rawcdn.githack.com/opdykurihara/labs/5ff092f7c39c6ddee829bb64c9e329221f839ade/grid/index.html
+https://rawcdn.githack.com/opdykurihara/labs/61e70e3ae6f69110b853b055ead16304ad5a3750/grid/index.html
