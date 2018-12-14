@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+body{
+  color: #333;
+}
+ul{
+  padding:0;
+}
+li{
+  list-style: none;
+}
+pre{
+  padding:10px;
+  background: #333;
+  color:#fff;
+  font-size:16px;
+  line-height: 1.6;
+}
+
+h1{
+  font-size:35px;
+  font-weight: normal;
+  &+h2{
+    margin-top:30px;
+  }
+}
+
+h2{
+  margin-top:80px;
+  font-size:28px;
+  color:#333;
+  border-bottom: 1px solid #666;
+  font-weight: normal;
+}
+h3{
+  margin-top:50px;
+  font-weight: normal;
+  &::before{
+    position:relative;
+    top:3px;
+    content:"";
+    display:inline-block;
+    width:5px;
+    height:20px;
+    margin-right:5px;
+    background-color: #666;
+  }
+}
+
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  background-color: #eee;
+}
+.grid-02{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  background-color: #eee;
+  & article{
+    display: contents;
+  }
+}
+
+
+.str-container{
+  display: grid;
+  gap:10px;
+  grid-template:
+  "header header" auto
+  "navi   main"   1fr
+  "footer footer" auto/
+  100px   1fr;
+
+  & .str-header{
+    grid-area: header;
+    background-color:#eee;
+  }
+  & .str-navi{
+    grid-area: navi;
+    background-color:#eee;
+  }
+  & .str-main{
+    grid-area:main;
+    background-color:#eee;
+  }
+  & .str-footer{
+    grid-area:footer;
+    background-color:#eee;
+  }
+}
+
+
+.list-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  & li{
+    width:33%;
+    border: 1px solid #ccc;
+    background: #eee;
+  }
+}
+
+.list-container-02{
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  & li{
+    border:1px solid #ccc;
+    background: #eee;
+    $rowNum: 3;
+    $columnNum: 3;
+    @for $row from 1 through $rowNum {
+      @for $column from 1 through $columnNum {
+        $index: ($row - 1) * $columnNum + $column;
+        $nth: nth($row, $columnNum, $column);
+        &:nth-child($nth) {
+          grid-row: $row;
+          grid-column: $column;
+        }
+      }
+    }
+  }
+}
+
+
+.list-container-03{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 33%);
+
+  & li{
+    border:1px solid #ccc;
+    background: #eee;
+  }
+}
+
