@@ -32,3 +32,6 @@ $ npm run start
 ```
 
 * /src/main.jsを修正すると/build/_modules/special/script/bundle.jsに生成される。
+* サンプルHTMLの確認はhttp://localhost:3000/_modules/special/template/index.html
+
+
