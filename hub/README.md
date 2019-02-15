@@ -4,7 +4,7 @@ GitHub に対する操作をコマンドラインから行うためのツール�
 
 ## hubコマンドをインストールする
 ### macの場合
-brewで簡単にインストールできます。
+brewで簡単にインストールできる。
 ```
 $ brew install hub
 $ alias git=hub
@@ -15,7 +15,7 @@ hub version 2.3.0 # ← it works!
 
 ### windowsの場合
 https://github.com/github/hub/releases
-上記のURLから実行ファイルをダウンロードしinstall.batを起動し、PCを再起動する。
+上記のURLからinstall.batをダウンロードする。
 hub xxxで利用もできるが、gitコマンドを拡張したかのように使う方法が推奨されているらしいので、
 bash_profileなどにaliasを貼って使う。
 
@@ -55,7 +55,7 @@ issueを作成・確認する
 リポジトリをフォークする
 
 
-## githubページをデフォルトブラウザで確認する
+## githubページをデフォルトブラウザを立ち上げて確認する
 ```
 $ git browse
 ```
@@ -70,12 +70,12 @@ $ git browse -- pulls
 $ git browse -- pull/22
 ```
 
-## issueを確認する
+## ターミナルでissueを確認する
 `Usage: hub issue [-a ASSIGNEE] [-c CREATOR] [-@ USER] [-s STATE] [-f FORMAT] [-M MILESTONE] [-l LABELS] [-d DATE] [-o SORT_KEY [-]] [-L LIMIT]`
 ```
 $ git issue
 ```
-* closeされたissueを確認する
+* closeされたissueを確認する例
 ```
 $ git issue -s closed
 ```
@@ -92,16 +92,10 @@ issueテンプレートを利用してissueを作成する例
 ```
 $ git issue create -a opdykurihara -M 3 -l enhancement -F .github/ISSUE_TEMPLATE.md --edit
 ```
-上記のコマンドをgitconfigにaliasで記述しておくと便利。  
+上記のコマンドをgitconfigにaliasで記述しておくと例  
 .gitconfig
 ```
 iss = !hub issue create -a opdykurihara -l enhancement -F .github/ISSUE_TEMPLATE --edit
-```
-
-* issueテンプレートを利用する際、先頭に#があると、コメントアウトになるので#を別の文字列に変更しておく。  
-（ここでは[;]としている）
-```
-$ git config --global core.commentchar ';'
 ```
 
 #### Tips：コミットメッセージにissueタイトルを入れる
@@ -112,12 +106,12 @@ issue確認コマンドと組み合わせて、コミットメッセージにiss
 $ git issue -f '%t #%I%n' | grep '#45' | git commit -F - --edit;
 ```
 
-上記のコマンドをgitconfigにaliasで記述しておくと便利。  
+上記のコマンドをgitconfigにaliasで記述しておく例  
 .gitconfig
 ```
 cmi = "!f(){ hub issue -f '%t #%I%n' | grep '#'$1 | git commit -F - --edit;};f"
 ```
-
+下記のようにaliasを利用できる
 ```
 $ git cmi 45
 ```
@@ -131,23 +125,35 @@ $ git pull-request
 ```
 アサイン/レビュアーを入れてプルリクを作る例
 ```
-$ git pull-request -a opdykurihara -r ytsuchida2 -r opdasato -r opdmmuto -b master -h $(git symbolic-ref --short HEAD) -m '[menu]title' --edit
+$ git pull-request -a opdykurihara -r user1 -r user2 -b master -h $(git symbolic-ref --short HEAD) -m '[menu]title' --edit
 ```
 
+上記のコマンドをgitconfigにaliasで記述しておく例  
+.gitconfig
+```
+prp = !hub pull-request -a opdykurihara -r user1 -r user2 -b master -h $(git symbolic-ref --short HEAD) -m '[menu]title' --edit
+```
+下記のようにaliasを利用できる
+```
+$ git prp
+```
+
+
 ### Tips：issue番号に紐くpull requestを作る
-issue確認コマンドと組み合わせて、プルリクのタイトルにissueタイトルを入れる。  
-※hub issue -iオプションでissue番号に紐づくプルリクが作成できますが、  
-将来なくなるかもしれない機能なので利用しないでおきます。
+issue確認コマンドと組み合わせて、プルリクのタイトルにissueタイトルを入れてみる  
+※hub issue -iオプションでissue番号に紐づくプルリクが作成できるが、  
+将来なくなる予定の機能らしいのでここでは利用しない。
 
 45のissueタイトルを入れてみる例
 ```
 $ git issue -f '%t #%I%n' | grep '#45' | hub pull-request -F - -b master -h $(git symbolic-ref --short HEAD) --edit;
 ```
-上記のコマンドをgitconfigにaliasで記述しておくと便利。  
+上記のコマンドをgitconfigにaliasで記述しておく例  
 .gitconfig
 ```
 pri = "!f(){ hub issue -f '%t #%I%n' | grep '#'$1 | hub pull-request -F - -a opdykurihara -b master -h $(git symbolic-ref --short HEAD) --edit;};f"
 ```
+下記のようにaliasを利用できる
 ```
 $ git pri 45
 ```
@@ -183,4 +189,13 @@ vscodeの設定でgit-commit、git-rebaseファイルのautoGuessEncodingをfals
         "files.encoding": "utf8"
     },
 ```
+
+## テンプレートのコメントアウト文字列を変更する
+マークダウンでテンプレートを記述する場合[#]をタイトルとして利用したいので、
+別の文字列に変更しておくと便利。  
+* コメントを[;]とする例
+```
+$ git config --global core.commentchar ';'
+```
+
 
