@@ -92,8 +92,7 @@ issueテンプレートを利用してissueを作成する例
 ```
 $ git issue create -a opdykurihara -M 3 -l enhancement -F .github/ISSUE_TEMPLATE.md --edit
 ```
-上記のコマンドをgitconfigにaliasで記述しておくと例  
-.gitconfig
+* .gitconfigのalias例
 ```
 iss = !hub issue create -a opdykurihara -l enhancement -F .github/ISSUE_TEMPLATE --edit
 ```
@@ -101,13 +100,11 @@ iss = !hub issue create -a opdykurihara -l enhancement -F .github/ISSUE_TEMPLATE
 #### Tips：コミットメッセージにissueタイトルを入れる
 issue確認コマンドと組み合わせて、コミットメッセージにissueタイトルを入れてみる
 
-45のissueタイトルを入れる例
+#45のissueタイトルを入れる例
 ```
 $ git issue -f '%t #%I%n' | grep '#45' | git commit -F - --edit;
 ```
-
-上記のコマンドをgitconfigにaliasで記述しておく例  
-.gitconfig
+* .gitconfigのalias例
 ```
 cmi = "!f(){ hub issue -f '%t #%I%n' | grep '#'$1 | git commit -F - --edit;};f"
 ```
@@ -127,9 +124,7 @@ $ git pull-request
 ```
 $ git pull-request -a opdykurihara -r user1 -r user2 -b master -h $(git symbolic-ref --short HEAD) -m '[menu]title' --edit
 ```
-
-上記のコマンドをgitconfigにaliasで記述しておく例  
-.gitconfig
+* .gitconfigのalias例
 ```
 prp = !hub pull-request -a opdykurihara -r user1 -r user2 -b master -h $(git symbolic-ref --short HEAD) -m '[menu]title' --edit
 ```
@@ -138,18 +133,16 @@ prp = !hub pull-request -a opdykurihara -r user1 -r user2 -b master -h $(git sym
 $ git prp
 ```
 
-
 ### Tips：issue番号に紐くpull requestを作る
 issue確認コマンドと組み合わせて、プルリクのタイトルにissueタイトルを入れてみる  
 ※hub issue -iオプションでissue番号に紐づくプルリクが作成できるが、  
 将来なくなる予定の機能らしいのでここでは利用しない。
 
-45のissueタイトルを入れてみる例
+45のissueタイトルを入れてプルリクエストを作る例
 ```
 $ git issue -f '%t #%I%n' | grep '#45' | hub pull-request -F - -b master -h $(git symbolic-ref --short HEAD) --edit;
 ```
-上記のコマンドをgitconfigにaliasで記述しておく例  
-.gitconfig
+* .gitconfigのalias例
 ```
 pri = "!f(){ hub issue -f '%t #%I%n' | grep '#'$1 | hub pull-request -F - -a opdykurihara -b master -h $(git symbolic-ref --short HEAD) --edit;};f"
 ```
