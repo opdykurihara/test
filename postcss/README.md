@@ -1,4 +1,4 @@
-# postcss-preset-envで次世代CSSをカジュアルに利用する
+# postcss-preset-envで次世代CSSを利用する
 
 ※2019.10.10:postcss-cssnextは非推奨となりpostcss-preset-envを利用する方法に変更しました。
 [postcss-cssnextについてはこちらに移動しました。](cssnext/README.md)
@@ -123,3 +123,109 @@
 }
 ```
 `npm run master`
+
+## sassぽく利用する
+＄変数、@mixin、@extend、@if、@at-root、@content、inlineコメント(//)を利用できるようにモジュールを追加する。
+* postcss-simple-vars
+* postcss-mixins
+* postcss-extend
+* postcss-conditionals
+* postcss-atroot
+* postcss-strip-inline-comments 
+
+`npm i --save-dev postcss-simple-vars postcss-mixins postcss-extend postcss-conditionals postcss-atroot postcss-strip-inline-comments`
+
+package.jsonのpostcss項目にも追加する。
+```
+{
+  ...略...
+
+  "postcss": {
+    "map": false,
+    "parser": "postcss-scss",  <-- ※
+    "plugins": {
+      "postcss-import":{}, 
+      "postcss-mixins":{},  <-- ※
+      "postcss-extend":{},  <-- ※
+      "postcss-simple-vars":{},  <-- ※
+      "postcss-atroot":{},  <-- ※
+      "postcss-conditionals":{},  <-- ※
+      "postcss-preset-env": {
+        "stage": 0,
+        "preserve": false,
+        "autoprefixer":{
+          "grid": true
+        }
+      },
+      "postcss-strip-inline-comments":{},  <-- ※
+      "postcss-discard-empty": {},
+      "stylelint": {"fix":true}
+    }
+  }
+}
+```
+
+sassのシンタックスとは微妙に異なるので注意する。  
+
+[例1] 
+```
+@define-mixin clearfix{ <-- mixinを定義
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/* clearfix */
+%clearfix{
+ @mixin clearfix;　<-- mixinを利用
+}
+
+.sample{
+  @extend %clearfix;
+}
+```
+[例2] 
+```
+$lyt-cont:960px;
+$bp-full:$bp-pc;
+
+@define-mixin breakpoint $point{  <-- mixinを定義
+  @if $point == full{
+    @media screen and (max-width:calc($bp-full + 40px)){
+      @mixin-content; <-- @content
+    }
+  }
+}
+
+.sample{
+  font-size:16px;
+  // ====Media Queries====
+  @mixin breakpoint tab{
+    font-size:13px;
+  }
+  // ====Media Queries====
+}
+```
+[例3]
+```
+@if $base-modules{ <-- @if
+  .link-blank{
+    width: 12px;
+    vertical-align: -.04em;
+
+    @at-root{ <-- @at-root
+      [class^="btn"]{
+        & .link-blank{
+          width: 17px;
+          vertical-align: -.11em;
+        }
+      }
+    }
+  }
+}
+```
+
+とりあえず使ってみたいという方はsampleでどうぞ。
+* [sample](https://github.com/opdykurihara/labs/tree/master/postcss/env/sample/)

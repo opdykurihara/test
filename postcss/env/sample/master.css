@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import "./_setting.css";
+@import "./_base-modules.css";
+
+/* clearfix */
+%clearfix{
+ @mixin clearfix;
+}
+
+/* comment */
+// inline comment
+.test >a{
+  font-size:16;
+  @extend %clearfix;
+  & .text-inner{
+    background-color: #fcc;
+  }
+  // ====Media Queries====
+  @mixin breakpoint tab{
+    font-size:13px;
+  }
+  // ====Media Queries====
+}
+
+.test2{
+  @extend %clearfix;
+}

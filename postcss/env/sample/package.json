@@ -1,0 +1,74 @@
+{
+  "name": "private",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "master": "postcss -d ./out/ ./master.css -w --poll true"
+  },
+  "keywords": [],
+  "author": "Yuka Kurihara",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "postcss": "^7.0.18",
+    "postcss-atroot":"^0.1.3",
+    "postcss-cli": "^6.1.3",
+    "postcss-conditionals":"^2.1.0",
+    "postcss-scss":"^2.0.0",
+    "postcss-extend":"^1.0.5",
+    "postcss-mixins":"^6.2.2",
+    "postcss-import":"^12.0.1",
+    "postcss-discard-empty": "^4.0.1",
+    "postcss-preset-env":"^6.7.0",
+    "postcss-simple-vars":"^.0.2",
+    "postcss-strip-inline-comments":"^0.1.5",
+    "stylelint": "^11.0.0"
+  },
+  "browserslist": [
+    "android >= 4.2"
+  ],
+  "postcss": {
+    "map": false,
+    "parser": "postcss-scss",
+    "plugins": {
+      "postcss-import":{},
+      "postcss-mixins":{},
+      "postcss-extend":{},
+      "postcss-simple-vars":{},
+      "postcss-atroot":{},
+      "postcss-conditionals":{},
+      "postcss-preset-env": {
+        "stage": 0,
+        "preserve": false,
+        "autoprefixer":{
+          "grid": true
+        }
+      },
+      "postcss-strip-inline-comments":{},
+      "postcss-discard-empty": {},
+      "stylelint": {"fix":true}
+    }
+  },
+  "stylelint": {
+    "rules": {
+      "string-quotes": "double",
+      "indentation": 0,
+      "number-leading-zero": "never",
+      "number-no-trailing-zeros": true,
+      "declaration-colon-space-after": "never",
+      "declaration-empty-line-before": "never",
+      "block-opening-brace-space-before": "never",
+      "rule-empty-line-before": "never",
+      "color-hex-case": "lower",
+      "selector-list-comma-newline-after":"always",
+      "selector-combinator-space-before":"always",
+      "at-rule-empty-line-before":"always",
+      "comment-empty-line-before":["always",{
+        "except":"first-nested",
+        "ignore":"after-comment"
+      }],
+      "block-no-empty":true
+    }
+  }
+}

@@ -1,0 +1,81 @@
+//----------------------------------------------------------------
+//
+//  フォントサイズ＆行間調整
+//
+//----------------------------------------------------------------
+@if $base-font{
+  #str-main{
+    line-height: 1.75;
+    font-size: 16px;
+
+    & p,& menu,& ul,& ol,& dl,& table{
+      margin-top: 20px;
+    }
+
+    // ====Media Queries====
+    @mixin breakpoint tab{
+      line-height: 1.8;
+      font-size: 14px;
+      & p,& menu,& ul,& ol,& dl,& table{
+      margin-top: 10px;
+      }
+    }
+    // ====Media Queries====
+  }
+}
+
+
+//----------------------------------------------------------------
+//
+//  基本モジュール
+//
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+//  別ウィンドアイコン表示
+//----------------------------------------------------------------
+@if $base-modules{
+  .link-blank{
+    width: 12px;
+    vertical-align: -.04em;
+
+    @at-root{
+      [class^="btn"]{
+        & .link-blank{
+          width: 17px;
+          vertical-align: -.11em;
+        }
+      }
+    }
+  }
+}
+
+
+
+//----------------------------------------------------------------
+//  .video 動画埋め込みコンポーネント
+//----------------------------------------------------------------
+@if $unique-modules-video{
+  .video{
+    margin: 0 auto;
+    max-width: $video-width;
+
+    & iframe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    & video{
+      max-width: 100%;
+    }
+
+    & .video-content{
+      padding-top: calc(315 / 560 * 100%);
+      height: 0;
+      position: relative;
+    }
+  }
+}
+
