@@ -1,11 +1,13 @@
-# postcss-cssnextで次世代CSSをカジュアルに利用する
+# postcss-preset-envで次世代CSSをカジュアルに利用する
 
-## [postcss-cssnext](http://cssnext.io/)とは
+※2019.10.10:postcss-cssnextは非推奨となりpostcss-preset-envを利用する方法に変更しました。
+[postcss-cssnextについてはこちらに移動しました。](cssnext/README.md)
+
+## [postcss-preset-env](https://preset-env.cssdb.org/)とは
 次世代のCSSシンタックスを今のブラウザでも解釈できるようにトランスパイルするpostcssプラグイン。
  * 次世代CSSシンタックスを先取りしつつ現行バージョンのCSSを生成できる。
  * 次世代CSSシンタックスを利用しなくてもしてトランスパイル可能。  
- [cssnextで利用可能なシンタックス](http://cssnext.io/features/)
-
+ 
 例）
 ```
 :root {
@@ -35,177 +37,89 @@
 * Sassを利用するとフォーマットを自動で整形し、前回のCSSの差分が分からなくなった
 * Sassファイルがある事に気づかず、element配下のCSSを修正して最新ファイルがどちらか分からなくなった
 
-## postcss-cssnextを利用することの利点
+## postcss-preset-envを利用することの利点
 * フォーマットの整形を利用しなければ既存のCSSのフォーマットに影響を与えずAutoprefixerやネスト機能を利用できる。
 * 変数など次世代CSSシンタックスを利用して効率的にCSSを書くことができる。
 
-## postcss-cssnextの弱点
+## postcss-preset-envの弱点
 * Sassの代用として利用するためには複数のモジュールのインストールが必要となり、独自シンタックスのcssになってしまう。
 → Sassの代用としたいのであれば素直にsassを使った方が良いと思う
 
-## カジュアルに使うときの設定
+## 利用方法
 
 ### 1) 必要なモジュールをインストールする
-* 基本のモジュールpostcss、postcss-cli、postcss-cssnext
-```
-npm i --save postcss postcss-cli postcss-cssnext
-```
-* ネストを利用したときに生成されてしまう空スタイルを削除するモジュール
-```
-npm i --save postcss-discard-empty
-```
+* 基本のモジュールpostcss、postcss-cli、postcss-preset-env  
+`npm i --save-dev postcss postcss-cli postcss-preset-env`
 
-### 2) postcss.config.jsを作る
-postcss-cssnextモジュールにはautoprefixerが内包されているため、  
-autoprefixer単体のインストールは不要ですが、
-gridのautoprefixerを利用したい場合はautoprefixer単体もインストールする必要があります。  
-（※postcss-cssnextに内包されているautoprefixerが古いため）
+* ネストを利用したときに生成されてしまう空スタイルを削除するモジュール  
+`npm i --save-dev postcss-discard-empty`
 
-#### gridのautoprefixerを利用しない場合のpostcss.config.js例
+* 外部cssをimportするためのモジュール  
+`npm i --save-dev postcss-import`
 
-```
-module.exports = {
-  map: false,
-  plugins: [
-      require('postcss-cssnext')({
-        browsers: [
-          'ie >= 11',
-          'android >= 4.2'
-        ]
-        warnForDuplicates:false
-      }),
-      require('postcss-discard-empty')({})
-  ]
-};
-```
+* cssを整形するためのモジュール  
+`npm i --save-dev stylelint`  
+[stylelintの設定についてはこちらを参照](https://stylelint.io/user-guide/configuration)
 
-#### gridのautoprefixerを利用する場合のpostcss.config.js例
+### package.jsonに設定を追加
 ```
-npm i --save autoprefixer
-```
+{
+  ...略...
 
-```
-module.exports = {
-  map: false,
-  plugins: [
-      require('postcss-cssnext')({
-        warnForDuplicates:false
-      }),
-      require("autoprefixer")({
-        browsers: [
-          'ie >= 11',
-          'android >= 4.2'
-        ],
-        grid:true　// <-- ★grid:trueにすることでgridのautoprefixerが利用可能
-      }),
-      require('postcss-discard-empty')({})
-  ]
-};
-```
-
-#### スタイル整形を加えたい場合のpostcss.config.js例
-※既存CSSのフォーマットも含めて整形するので、既存CSSのフォーマットに影響を及ぼしたくない場合は利用しない。
-```
-npm i --save stylefmt
-```
-整形したいスタイルフォーマットの設定ファイル（.stylelintrc）を用意して、postcss.config.jsと同じ場所に置く。
-* [stylelintrcの設定について](https://stylelint.io/user-guide/configuration/)
-
-```
-module.exports = {
-  map: false,
-  plugins: [
-      require('postcss-cssnext')({
-        browsers: [
-          'ie >= 11',
-          'android >= 4.2'
-        ]
-        warnForDuplicates:false
-      }),
-      require('stylefmt')(),　// <-- ★追加
-      require('postcss-discard-empty')({})
-  ]
-};
+  "browserslist": [
+    "android >= 4.2"  <-- ブラウザリストを記述
+  ],
+  "postcss": {   <-- postcssの設定を記述
+    "map": false,
+    "plugins": {
+      "postcss-import": {},
+      "postcss-preset-env": {
+        "stage": 0,
+        "preserve": false,
+        "autoprefixer":{
+          "grid": true
+        }
+      },
+      "stylelint": {"fix":true},
+      "postcss-discard-empty": {}
+    }
+  },
+  "stylelint": {  <-- スタイル整形の設定を記述
+    "rules": {
+      "string-quotes": "double",
+      "indentation": 0,
+      "number-leading-zero": "never",
+      "number-no-trailing-zeros": true,
+      "declaration-colon-space-after": "never",
+      "declaration-empty-line-before": "never",
+      "block-opening-brace-space-before": "never",
+      "rule-empty-line-before": "never",
+      "color-hex-case": "lower",
+      "comment-empty-line-before":["always",{
+        "except":"first-nested",
+        "ignore":"after-comment"
+      }],
+      "block-no-empty":true
+    }
+  }
+}
 ```
 
 ## postcssファイルをcssに変換するには
-コマンドを打ってもいいし、npm scriptに設定して利用する。
-
+`postcss ./css/input/master.css -d ./css/output/ -w --poll true`
 * -d で出力するディレクトリを指定
 * -w ファイルの変更を監視する
 * --poll ファイルの変更をうまく監視できないときがあるのでポーリングはtureにしておく
 * --config コンフィグファイルの場所
-```
-postcss ./css/input/master.css -d ./css/output/ -w --poll true --config ./postcss.config.jp
-```
 
-## sassっぽく使いたい場合の設定
+上記のようにコマンドを毎回打つのは面倒なので、package.jsonのscriptに設定して利用すると便利。
+```
+{
+  ...略...
 
-### onelineコメントを利用したい場合
-※「// コメント」を記述可能だが、「/* コメント */」と出力されるのでsassのように出力されないコメントとして利用はできない。
-```
-npm i --save postcss-scss
-```
-```
-module.exports = {
-  parser: 'postcss-scss',
-  plugins: [
-    ...
-  ]
-  ... 
-}
-```
-
-### mixinを利用したい場合
-```
-npm i --save postcss-mixins
-```
-```
-module.exports = {
-  plugins: [
-    require('postcss-mixins')({
-      // mixinファイルをファイル名で指定する場合
-      // mixinsFiles: path.join(__dirname, 'css/input/mixins/mixin'),
-      // mixinファイルをディレクトリで指定する場合
-      mixinsDir: path.join(__dirname, 'css/input/mixins')
-    })
-  ]
-}
-```
-* mixinの記法
-```
-@define-mixin clearfix{
-  &:before,
-  &:after {
-    content:"";
-    display:table;
-  }
-  &:after {
-    clear:both;
+  "scripts": {
+    "master": "postcss ./css/input/master.css -d ./css/output/ -w --poll true"
   }
 }
 ```
-
-### @import,@extendを利用したい場合
-```
-npm i --save precss
-```
-```
-module.exports = {
-  plugins: [
-    require('precss')()
-  ]
-}
-```
-```
-/* iｍportは拡張子までを指定する */
-@import 'includes/include.css';
-%clearfix{
-  @mixin clearfix;
-}
-.search {
-  display: grid;
-  @extend %clearfix;
-}
-```
-
+`npm run master`
