@@ -12,5 +12,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "minimist": ">=1.2.3",
+    "kind-of": ">=6.0.3"
+  }
 }
